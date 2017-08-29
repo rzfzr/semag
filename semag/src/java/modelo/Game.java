@@ -1,4 +1,3 @@
-
 package modelo;
 
 import java.io.Serializable;
@@ -11,61 +10,72 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="curso")
-public class Game implements Serializable {
+@Table(name = "GameTable")
+
+public class Game implements Serializable{
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "codigo")
-    private Integer codigo;
-    @Column(length = 50, name = "nome")
-    private String nome;
+    @Column(name = "gameId")
+    private Integer gameId;
+    
+    @Column(length = 14, name = "totalFavorite")
+    private Integer totalFavorite;
+    
+    @Column(length = 150, name = "name")
+    private String name;
+    
+//string description
+    //totalwishlist
+    //totalplayed
+    //intreview[]
     
     public Game(){
-        codigo = 0;
-        nome = "";
-    }
-    
-
-    public Integer getCodigo() {
-        return codigo;
+        this.gameId = 0;
+        this.totalFavorite = 0;
+        this.name = "";
     }
 
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
+    public Integer getGameId() {
+        return gameId;
     }
 
-    public String getNome() {
-        return nome;
+    public void setGameId(Integer gameId) {
+        this.gameId = gameId;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public Integer getTotalFavorite() {
+        return totalFavorite;
     }
+
+    public void setTotalFavorite(Integer totalFavorite) {
+        this.totalFavorite = totalFavorite;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String Nome) {
+        this.name = Nome;
+    }
+
+
     
     @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 31 * hash + Objects.hashCode(this.codigo);
-        hash = 31 * hash + Objects.hashCode(this.nome);
+    public int hashCode(){
+        int hash = 7;
+        hash = 43 * hash + Objects.hashCode(this.getGameId());
+        hash = 43 * hash + Objects.hashCode(this.getName());
+        hash = 43 * hash + Objects.hashCode(this.getTotalFavorite());
         return hash;
     }
-
+    
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Game other = (Game) obj;
-        if (!Objects.equals(this.codigo, other.codigo)) {
-            return false;
-        }
-        if (!Objects.equals(this.nome, other.nome)) {
+    public boolean equals(Object obj){
+        if(obj == null){
             return false;
         }
         return true;
-    }
-    
+    }    
 }
