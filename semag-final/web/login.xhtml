@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html">
+    
+    <head>
+        <title>SEMAG</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+<h:body>
+	<style>
+body {
+	background-color: #eeeeee;
+}
+
+.centralizar {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -148px;
+	margin-top: -200px;
+	background-color: #ffffff;
+	border-radius: 10px;
+	border: 2px solid gray;
+	padding: 8px;
+}
+</style>
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+
+	<div class="centralizar">
+		<h:form class="form-horizontal">
+			<fieldset>
+				<div class="form-group">
+					<label for="inputEmail" class="col-lg-2 control-label">Login</label>
+					<div class="col-lg-10">
+						<p:inputText value="#{indexView.login}" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword" class="col-lg-2 control-label">Senha</label>
+					<div class="col-lg-10">
+						<p:password value="#{indexView.senha}" />
+					</div>
+				</div>
+				<p:commandButton value="Entrar" action="#{indexView.logar}"
+					ajax="false" icon="ui-icon-circle-check" style="width: 100%" />
+			</fieldset>
+		</h:form>
+	</div>
+
+</h:body>
+</html>
