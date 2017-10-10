@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputScript library="js" name="bootstrap.min.js" />
+	<title>Adicionar Jogos</title>
+</h:head>
+<h:body>
+	<style>
+body {
+	background-color: #eeeeee;
+}
+</style>
+	
+
+	<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			
+			<a class="navbar-brand" href="#">SEMAG</a>
+		</div>
+
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false"> Jogo<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="jogos.xhtml">Lista de Jogos</a></li>
+						<li><a href="adicionar-jogo.xhtml">Adicionar jogo</a></li>
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false"> Reviews<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="reviews.xhtml">Criar Review</a></li>
+						<li><a href="lista-review.xhtml">Lista Reviews</a></li>
+						
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false"> Usuários<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="usuarios.xhtml">Lista de usuários</a></li>
+						<li><a href="adicionar-usuario.xhtml">Adicionar usuário</a></li>
+					</ul></li>
+			</ul>
+		</div>
+	</div>
+	</nav>
+
+	<div class="container">
+		<div class="panel panel-default">
+			<h:form id="inputs">
+				<div class="panel-body">
+					<div class="form-group">
+						<label>Nome: </label>
+                                                <h:panelGrid columns ="">
+						<p:inputText value="#{jogosView.jogoNovo.nome}"/>
+                                                </h:panelGrid>
+					</div>
+					<div class="form-group">
+						<label>Avaliados: </label>
+                                                <h:panelGrid columns="">
+						<p:inputText value="#{jogosView.jogoNovo.preco}"/>
+                                                </h:panelGrid>
+					</div>
+				</div>
+				<div class="panel-footer">
+					<p:messages />
+					<p:commandButton value="Adicionar" update="inputs" actionListener="#{jogosView.salvarJogo()}"/>	
+				</div>
+			</h:form>
+		</div>
+	</div>
+</h:body>
+</html>

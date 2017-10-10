@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+	<h:outputScript library="js" name="bootstrap.min.js" />
+	<title>SEMAG</title>
+</h:head>
+<h:body>
+	<style>
+body {
+	background-color: #eeeeee;
+}
+
+.centralizar {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -148px;
+	margin-top: -200px;
+	background-color: #eeeeee;
+	border-radius: 10px;
+	border: 2px solid gray;
+	padding: 8px;
+}
+</style>
+	<h:outputStylesheet library="css" name="bootstrap.min.css" />
+
+        
+        
+        
+	<div class="centralizar">
+		<h:form class="form-horizontal">
+			<fieldset>
+				<div class="form-group">
+					<label for="inputEmail" class="col-lg-2 control-label">Login</label>
+					<div class="col-lg-10">
+						<p:inputText value="#{indexView.login}" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputPassword" class="col-lg-2 control-label">Senha</label>
+					<div class="col-lg-10">
+						<p:password value="#{indexView.senha}" />
+					</div>
+				</div>
+				<p:commandButton value="Entrar" action="#{indexView.logar}"
+					ajax="false" icon="ui-icon-circle-check" style="width: 100%" />
+			</fieldset>
+		</h:form>
+	</div>
+
+</h:body>
+</html>

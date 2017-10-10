@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputScript library="js" name="bootstrap.min.js" />
+	<title>Lista de Jogos</title>
+</h:head>
+<h:body>
+	<style>
+body {
+	background-color: #eeeeee;
+}
+</style>
+	
+        
+
+	<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			
+			<a class="navbar-brand" href="#">SEMAG</a>
+		</div>
+
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false"> Jogos<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="jogos.xhtml">Lista de Jogos</a></li>
+						<li><a href="adicionar-jogo.xhtml">Adicionar Jogo</a></li>
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false"> Reviews<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="reviews.xhtml">Criar Review</a></li>
+						<li><a href="lista-review.xhtml">Lista Reviews</a></li>
+						
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false"> Usuários<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="usuarios.xhtml">Lista de usuários</a></li>
+						<li><a href="adicionar-usuario.xhtml">Adicionar usuário</a></li>
+					</ul></li>
+			</ul>
+		</div>
+	</div>
+	</nav>
+
+	<div class="container">
+		<h:form id="form">
+			<p:dataTable id="produtos" var="produto"
+				value="#{jogosView.jogos}" rowKey="#{produto.id}"
+				selection="#{jogosView.jogoSelecionado}"
+				selectionMode="single">
+				<f:facet name="header">
+		            Jogos
+		        </f:facet>
+				<p:column headerText="Id">
+					<h:outputText value="#{produto.id}" />
+				</p:column>
+				<p:column headerText="Nome">
+					<h:outputText value="#{produto.nome}" />
+				</p:column>
+				<p:column headerText="Avaliados">
+					<h:outputText value="#{produto.preco}" />
+				</p:column>
+				<f:facet name="footer">
+					<p:commandButton value="Editar" update=":formDialog:dialog"
+						oncomplete="PF('editarDialog').show()" />
+					<p:commandButton value="Deletar"
+						actionListener="#{jogosView.deletarJogo()}"
+						update="produtos" />
+				</f:facet>
+			</p:dataTable>
+			<p:messages />
+		</h:form>
+		<h:form id="formDialog">
+			<p:dialog id="dialog" header="Editar Jogo" resizable="false" widgetVar="editarDialog"
+				modal="true" style="width: auto; height: auto">
+				<div class="row">
+					<h:outputText styleClass="col-xs-6"
+						value="Jogo: " />
+					<p:inputText styleClass="col-xs-6"
+						value="#{jogosView.jogoSelecionado.nome}" />
+				</div>
+				<div class="row">
+					<h:outputText styleClass="col-xs-6" value="Valor:" />
+					<p:inputText styleClass="col-xs-6"
+						value="#{jogosView.jogoSelecionado.preco}" />
+				</div>
+				<f:facet name="footer">
+					<p:commandButton value="Salvar" update=":form:produtos"
+						actionListener="#{jogosView.editarJogo()}"
+						oncomplete="PF('editarDialog').hide()"
+						styleClass="col-lg-12 col-xs-12 col-md-12" />
+				</f:facet>
+			</p:dialog>
+		</h:form>
+	</div>
+    
+        
+    
+</h:body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputScript library="js" name="bootstrap.min.js" />
+	<title>Lista de Usuários</title>
+</h:head>
+<h:body>
+	<style>
+body {
+	background-color: #eeeeee;
+}
+</style>
+	
+        
+	<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+		
+			<a class="navbar-brand" href="#">SEMAG</a>
+		</div>
+
+		<div class="collapse navbar-collapse"
+			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false"> Jogos<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="jogos.xhtml">Lista de jogos</a></li>
+						<li><a href="adicionar-jogo.xhtml">Adicionar jogo</a></li>
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false"> Reviews<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="reviews.xhtml">Criar Review</a></li>
+						<li><a href="lista-review.xhtml">Lista Reviews</a></li>
+						
+					</ul></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown" role="button" aria-haspopup="true"
+					aria-expanded="false"> Usuários<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="usuarios.xhtml">Lista de usuários</a></li>
+						<li><a href="adicionar-usuario.xhtml">Adicionar usuário</a></li>
+					</ul></li>
+			</ul>
+		</div>
+	</div>
+	</nav>
+
+	<div class="container">
+		<h:form id="form">
+			<p:dataTable id="usuarios" var="usuario"
+				value="#{usuariosView.usuarios}" rowKey="#{usuario.id}"
+				selection="#{usuariosView.usuarioSelecionado}"
+				selectionMode="single">
+				<f:facet name="header">
+		            Usuários
+		        </f:facet>
+				<p:column headerText="Id">
+					<h:outputText value="#{usuario.id}" />
+				</p:column>
+				<p:column headerText="Nome">
+					<h:outputText value="#{usuario.nome}" />
+				</p:column>
+				<p:column headerText="Login">
+					<h:outputText value="#{usuario.login}" />
+				</p:column>
+				<p:column headerText="Permissao">
+					<h:outputText value="#{usuario.permissao}" />
+				</p:column>
+				<f:facet name="footer">
+					<p:commandButton value="Editar" update=":formDialog:dialog"
+						oncomplete="PF('dialog').show()"
+						actionListener="#{usuariosView.mostrar()}" />
+					<p:commandButton value="Deletar" update="usuarios"
+						actionListener="#{usuariosView.deletarUsuario()}" />
+				</f:facet>
+			</p:dataTable>
+			<p:messages />
+		</h:form>
+		<h:form id="formDialog">
+			<p:dialog id="dialog" header="Editar Usuário" resizable="false"
+				widgetVar="dialog" modal="true" style="width: auto; height: auto">
+				<div class="row">
+					<h:outputText styleClass="col-xs-6" value="Nome" />
+					<p:inputText styleClass="col-xs-6"
+						value="#{usuariosView.usuarioSelecionado.nome}" />
+				</div>
+				<div class="row">
+					<h:outputText styleClass="col-xs-6" value="Login:" />
+					<p:inputText styleClass="col-xs-6"
+						value="#{usuariosView.usuarioSelecionado.login}" />
+				</div>
+				<div class="row">
+					<h:outputText styleClass="col-xs-6" value="Permissão:" />
+					<p:selectOneMenu id="console"
+						value="#{usuariosView.usuarioSelecionado.permissao}">
+						<f:selectItem itemLabel="Administrador" itemValue="1" />
+						<f:selectItem itemLabel="Funcionário" itemValue="0" />
+					</p:selectOneMenu>
+				</div>
+				<f:facet name="footer">
+					<p:commandButton value="Salvar" update=":form:usuarios"
+						actionListener="#{usuariosView.editarUsuario()}"
+						oncomplete="PF('dialog').hide()"
+						styleClass="col-lg-12 col-xs-12 col-md-12" />
+				</f:facet>
+			</p:dialog>
+		</h:form>
+	</div>
+</h:body>
+</html>
