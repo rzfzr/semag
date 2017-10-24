@@ -68,7 +68,7 @@ public class ReviewView {
 		this.reviews = reviewDao.getAll();
 	}
 
-	public void deletarJogo() {
+	public void deletarReview() {
 		this.reviewDao.remove(reviewSelecionado.getId());
 		this.reviews = reviewDao.getAll();
 	}

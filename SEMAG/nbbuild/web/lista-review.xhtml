@@ -58,26 +58,24 @@ body {
 	<div class="container">
 		<h:form id="form">
 			<p:dataTable id="produtos" var="produto"
-                                     value="#{reviewView.reviews}" rowKey="#{produto.id}">
+                                     value="#{reviewView.reviews}" rowKey="#{produto.id}"
+                                     selection="#{reviewView.reviewSelecionado}"
+                                     selectionMode="single">
 				<f:facet name="header">
 		            Reviews
 		        </f:facet>
 				<p:column headerText="Id">
 					<h:outputText value="#{produto.id}" />
 				</p:column>
-				<p:column headerText="Avaliados">
-					<h:outputText value="#{produto.valor}" />
+                                <p:column headerText="Jogo">
+                                    <h:outputText value="#{produto.nomeJogo}" />
 				</p:column>
+				
                                 
                                 <p:column headerText="comentários">
                                     <h:outputText value="#{produto.comment}" />
 				</p:column>
                             
-				<f:facet name="footer">
-					<p:commandButton value="Deletar"
-						actionListener="#{jogosView.deletarJogo()}"
-						update="produtos" />
-				</f:facet>
 			</p:dataTable>
 			<p:messages />
 		</h:form>

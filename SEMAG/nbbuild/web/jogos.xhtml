@@ -70,9 +70,7 @@ body {
 				<p:column headerText="Nome">
 					<h:outputText value="#{produto.nome}" />
 				</p:column>
-				<p:column headerText="Avaliados">
-					<h:outputText value="#{produto.preco}" />
-				</p:column>
+				
 				<f:facet name="footer">
 					<p:commandButton value="Editar" update=":formDialog:dialog"
 						oncomplete="PF('editarDialog').show()" />

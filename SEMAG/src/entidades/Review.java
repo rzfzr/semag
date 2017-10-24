@@ -22,6 +22,17 @@ public class Review {
 	@Column
 	private Date data;
 
+    public String getNomeJogo() {
+        return nomeJogo;
+    }
+
+    public void setNomeJogo(String nomeJogo) {
+        this.nomeJogo = nomeJogo;
+    }
+        
+        @Column
+        private String nomeJogo;
+
         
         @Column
 	private String comment;
